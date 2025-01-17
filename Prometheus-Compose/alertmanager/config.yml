@@ -1,0 +1,11 @@
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 30s
+  repeat_interval: 5m
+  receiver: 'admins'
+receivers:
+  - name: 'admins'
+    webhook_configs:
+    - send_resolved: True
+      url: http://prometheus-bot:9087/alert/477555873

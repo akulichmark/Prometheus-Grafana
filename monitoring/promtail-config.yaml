@@ -1,0 +1,54 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  # myapp Config
+  - job_name: nginx
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: nginx
+          __path__: /var/log/nginx/*log
+    pipeline_stages:
+      - json:
+          expressions:
+            timestamp: time_iso8601
+      - timestamp:
+          source: timestamp
+          format: RFC3339
+          action_on_failure: 'skip'
+
+  - job_name: apache
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: apache
+          __path__: /var/log/apache2/access.log
+
+# In case more apps need to be added
+#  - job_name: nginx_app-name
+#    static_configs:
+#      - targets:
+#          - localhost
+#        labels:
+#          job: nginx_app-name
+#          __path__: /var/log/nginx_app-name/*log
+#
+#    pipeline_stages:
+#      - json:
+#          expressions:
+#            timestamp: time_iso8601
+#      - timestamp:
+#          source: timestamp
+#          format: RFC3339
+#          action_on_failure: 'skip'
+

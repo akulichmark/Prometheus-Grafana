@@ -1,0 +1,22 @@
+groups:
+  - name: CPU_Alerts
+    rules:
+      - alert: high_CPU_usage
+        #expr: 100 * (1 - avg by(instance) (rate(node_cpu_seconds_total{mode="user"}[1m]))) > 80
+        expr: 100 - (avg(irate(node_cpu_seconds_total{mode="idle"}[1m])) * 100) > 80
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High CPU usage detected on {{ $labels.instance }}"
+          description: "CPU usage on instance {{ $labels.instance }} has been above 80% for the last 5 minutes."
+  - name: Memory_Alerts
+    rules:
+      - alert: high_memory_load
+        expr: ((1-(node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes))*100) > 85
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Server memory is almost full"
+          description: "Reported by instance {{$labels.instance}} of job {{$labels.job}}."
