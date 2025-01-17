@@ -1,0 +1,8 @@
+services:
+  apache2:
+    image: ubuntu/apache2:2.4-22.04_beta
+    container_name: apache2
+    ports:
+      - "8080:80"
+    volumes:
+      - ../monitoring/aplogs:/var/log/apache2/

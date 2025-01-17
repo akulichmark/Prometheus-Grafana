@@ -1,0 +1,13 @@
+2025/01/17 15:02:44 [notice] 1#1: using the "epoll" event method
+2025/01/17 15:02:44 [notice] 1#1: nginx/1.27.3
+2025/01/17 15:02:44 [notice] 1#1: built by gcc 13.2.1 20240309 (Alpine 13.2.1_git20240309) 
+2025/01/17 15:02:44 [notice] 1#1: OS: Linux 6.8.0-1021-aws
+2025/01/17 15:02:44 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2025/01/17 15:02:44 [notice] 1#1: start worker processes
+2025/01/17 15:02:44 [notice] 1#1: start worker process 8
+2025/01/17 16:59:49 [error] 8#8: *7 open() "/var/www/html/cgi-bin/luci/;stok=/locale" failed (2: No such file or directory), client: 5.181.190.248, server: akdocker.ddnsfree.com, request: "GET /cgi-bin/luci/;stok=/locale?form=country&operation=read HTTP/1.1", host: "35.156.225.236:80"
+2025/01/17 18:50:19 [error] 8#8: *17 open() "/var/www/html/.env" failed (2: No such file or directory), client: 78.153.140.157, server: akdocker.ddnsfree.com, request: "GET /.env HTTP/1.1", host: "35.156.225.236"
+2025/01/17 19:57:14 [error] 8#8: *22 open() "/var/www/html/cgi-bin/luci/;stok=/locale" failed (2: No such file or directory), client: 5.181.190.248, server: akdocker.ddnsfree.com, request: "GET /cgi-bin/luci/;stok=/locale?form=country&operation=read HTTP/1.1", host: "35.156.225.236:80"
+2025/01/17 20:15:12 [error] 8#8: *23 open() "/var/www/html/.env" failed (2: No such file or directory), client: 78.153.140.157, server: akdocker.ddnsfree.com, request: "GET /.env HTTP/1.1", host: "35.156.225.236"
+2025/01/17 20:17:38 [error] 8#8: *25 open() "/var/www/html/cdn-cgi/trace" failed (2: No such file or directory), client: 206.189.152.11, server: akdocker.ddnsfree.com, request: "GET /cdn-cgi/trace HTTP/1.1", host: "speed.cloudflare.com"
+2025/01/17 20:18:37 [error] 8#8: *27 open() "/var/www/html/cdn-cgi/trace" failed (2: No such file or directory), client: 167.99.67.123, server: akdocker.ddnsfree.com, request: "GET /cdn-cgi/trace HTTP/1.1", host: "speed.cloudflare.com"

@@ -1,0 +1,35 @@
+services:
+
+  grafana:
+    image: grafana/grafana:11.4.0
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana_data:/var/lib/grafana
+  loki:
+    image: grafana/loki:3.3.2
+    container_name: grafana-loki
+    user: "0" # To force the container to use root user and avoid permission problems
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./loki-config.yaml:/etc/loki/local-config.yaml
+      - ./loki_data:/loki
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+  promtail:
+    image: grafana/promtail:3.3.2
+    container_name: promtail
+    volumes:
+      - ./logs:/var/log/nginx # Here we tell Promtail where the logs are
+      - ./aplogs:/var/log/apache2
+      # In case more app logs are needed
+      # - ../app_name/logs:/var/log/nginx_app_name
+      - ./promtail-config.yaml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml
+    restart: unless-stopped
+
+volumes:
+  grafana_data: {}
